@@ -9,7 +9,8 @@ namespace TestFullStack.WebApi.Controllers
 {
 
     
-    [Route("api/[controller]")]
+    [Route("")]
+    [Produces("application/json")]
     [ApiController]
     public class AuthController : ControllerBase
     {

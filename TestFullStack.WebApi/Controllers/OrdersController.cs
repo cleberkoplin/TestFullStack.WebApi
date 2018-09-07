@@ -9,6 +9,7 @@ namespace TestFullStack.WebApi.Controllers
 
 
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class OrdersController : ControllerBase
     {

@@ -37,30 +37,15 @@ namespace TestFullStack.WebApi
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            BindKernel();
-        }
+            services.AddScoped<DbContext, TestFullStackContext>();
 
-        private void BindKernel()
-        {
-            Kernel.StartKernel();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
 
-            var kernel = Kernel.GetKernel();
-
-            kernel.Register<DbContext>(() => {
-                var opBuilder = new DbContextOptionsBuilder<TestFullStackContext>();
-                opBuilder.UseSqlServer(Configuration.GetConnectionString("TestFullStack"));
-                return new TestFullStackContext(opBuilder.Options);
-            }, Lifestyle.Singleton);
-
-            //repository
-            Kernel.Bind(typeof(IRepository<>), typeof(Repository<>));
-            Kernel.Bind(typeof(IQueryRepository<>), typeof(QueryRepository<>));
-
-            //services
-            Kernel.Bind<IAuthService, AuthService>();
-            Kernel.Bind<IOrderService, OrderService>();
-            Kernel.Bind<IProductService, ProductService>();
-            Kernel.Bind<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,12 +55,8 @@ namespace TestFullStack.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
             app.UseMvc();
 
             ApiToken.GenerateSecret();
