@@ -2,6 +2,7 @@ using TestFullStack.Domain.DTOs;
 using TestFullStack.Domain.Entities;
 using TestFullStack.Domain.Injection;
 using TestFullStack.Domain.Repositories.Interfaces;
+using TestFullStack.Domain.Services;
 using TestFullStack.Domain.Services.Interfaces;
 using TestFullStack.Domain.Utils;
 using Xunit;
@@ -15,9 +16,10 @@ namespace TestFullStack.Test
 
         public UnitTestAuth()
         {
-            Start.BindKernel();
-            authService = Kernel.Get<IAuthService>();
-            repository = Kernel.Get<IRepository<User>>();
+            var kernel = Start.BindKernel();
+            
+            authService = kernel.Get<IAuthService>();
+            repository = kernel.Get<IRepository<User>>();
         }
 
         [Fact]

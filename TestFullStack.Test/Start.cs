@@ -11,26 +11,29 @@ namespace TestFullStack.Test
 {
     public class Start
     {
-        public static void BindKernel()
+        public static Kernel BindKernel()
         {
-            Kernel.StartKernel();
-            var kernel = Kernel.GetKernel();
+            Kernel kernel = new Kernel();
+            kernel.StartKernel();
 
-            kernel.Register<DbContext>(() => {
+            kernel.GetKernel().Register<DbContext>(() => {
                 var opBuilder = new DbContextOptionsBuilder<TestFullStackContext>();
                 opBuilder.UseInMemoryDatabase("test-db");
                 return new TestFullStackContext(opBuilder.Options);
             }, Lifestyle.Transient);
 
             //repository
-            Kernel.Bind(typeof(IRepository<>), typeof(Repository<>));
-            Kernel.Bind(typeof(IQueryRepository<>), typeof(QueryRepository<>));
+            kernel.Bind(typeof(IRepository<>), typeof(Repository<>));
+            kernel.Bind(typeof(IQueryRepository<>), typeof(QueryRepository<>));
 
             //services
-            Kernel.Bind<IAuthService, AuthService>();
-            Kernel.Bind<IOrderService, OrderService>();
-            Kernel.Bind<IProductService, ProductService>();
-            Kernel.Bind<IUserService, UserService>();
+            kernel.Bind<IAuthService, AuthService>();
+            kernel.Bind<IOrderService, OrderService>();
+            kernel.Bind<IProductService, ProductService>();
+            kernel.Bind<IUserService, UserService>();
+
+
+            return kernel;
         }
     }
 }

@@ -6,6 +6,7 @@ using TestFullStack.Domain.Repositories.Interfaces;
 using TestFullStack.Domain.Services.Interfaces;
 using Xunit;
 using System.Linq;
+using TestFullStack.Domain.Services;
 
 namespace TestFullStack.Test
 {
@@ -19,11 +20,12 @@ namespace TestFullStack.Test
 
         public UnitTestOrder()
         {
-            Start.BindKernel();
-            userService = Kernel.Get<IUserService>();
-            productService = Kernel.Get<IProductService>();
-            orderService = Kernel.Get<IOrderService>();
-            repository = Kernel.Get<IRepository<Order>>();
+            var kernel = Start.BindKernel();
+            
+            userService = kernel.Get<IUserService>();
+            productService = kernel.Get<IProductService>();
+            orderService = kernel.Get<IOrderService>();
+            repository = kernel.Get<IRepository<Order>>();
         }
 
         [Fact]

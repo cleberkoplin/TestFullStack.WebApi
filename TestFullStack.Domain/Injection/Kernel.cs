@@ -5,28 +5,28 @@ namespace TestFullStack.Domain.Injection
 {
     public class Kernel
     {
-        private static Container _kernel;
+        private Container _kernel;
 
-        public static Container GetKernel()
+        public Container GetKernel()
         {
             if (_kernel == null)
                 throw new Exception("Kernel não foi inicializado");
 
             return _kernel;
         }
-        public static void StartKernel()
+        public void StartKernel()
         {
             _kernel = new Container();
         }
 
 
-        private static void StartBase()
+        private void StartBase()
         {
             _kernel = new Container();
 
         }
 
-        public static T Get<T>() where T : class
+        public T Get<T>() where T : class
         {
             if (_kernel == null)
                 throw new Exception("Kernel não foi inicializado");
@@ -34,7 +34,7 @@ namespace TestFullStack.Domain.Injection
             return _kernel.GetInstance<T>();
         }
 
-        public static void Bind<TFrom, TTo>()
+        public void Bind<TFrom, TTo>()
             where TTo : class, TFrom
             where TFrom : class
         {
@@ -44,7 +44,7 @@ namespace TestFullStack.Domain.Injection
             _kernel.Register<TFrom, TTo>();
         }
 
-        public static void Bind(Type type1, Type type2)
+        public void Bind(Type type1, Type type2)
         {
             if (_kernel == null)
                 throw new Exception("Kernel não foi inicializado");
