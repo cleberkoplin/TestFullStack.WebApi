@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using TestFullStack.Domain.Base;
 using TestFullStack.Domain.Repositories.Interfaces;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace TestFullStack.Domain.Repositories
 {
@@ -35,6 +37,12 @@ namespace TestFullStack.Domain.Repositories
         public IQueryable<T> GetAll()
         {
             var result = Entities.AsQueryable();
+            return result;
+        }
+
+        public Task<List<T>> GetAllAwaiter()
+        {
+            var result = Entities.ToListAsync();
             return result;
         }
 

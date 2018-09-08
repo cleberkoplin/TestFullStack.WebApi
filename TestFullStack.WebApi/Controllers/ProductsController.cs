@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TestFullStack.Domain.Entities;
 using TestFullStack.Domain.Services.Interfaces;
@@ -7,7 +9,7 @@ namespace TestFullStack.WebApi.Controllers
 {
 
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [Produces("application/json")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -65,6 +67,21 @@ namespace TestFullStack.WebApi.Controllers
             {
                 Console.WriteLine(ex);
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<List<Product>> GetAll()
+        {
+            try
+            {
+                return await _productService.GetAll();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
             }
         }
 

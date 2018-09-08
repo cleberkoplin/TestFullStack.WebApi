@@ -3,6 +3,7 @@ using TestFullStack.Domain.Entities;
 using TestFullStack.Domain.Repositories.Interfaces;
 using TestFullStack.Domain.Services.Interfaces;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TestFullStack.Domain.Services
 {
@@ -41,6 +42,11 @@ namespace TestFullStack.Domain.Services
             _productRepository.Save();
         }
 
+
+        public async Task<List<Product>> GetAll()
+        {
+            return await _productRepository.GetAllAwaiter();
+        }
 
 
     }

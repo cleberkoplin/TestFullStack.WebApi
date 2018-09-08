@@ -58,7 +58,7 @@ namespace TestFullStack.Test
 
             Order order = repository.GetAll().FirstOrDefault();
             
-            //Assert.True(order != null && order.Items.Count() == 2 && order.User.Id == user.Id, "Save Order Ok!");
+            Assert.True(order != null && order.Items.Count() == 2 && order.User.Id == user.Id, "Save Order Ok!");
         }
         
        

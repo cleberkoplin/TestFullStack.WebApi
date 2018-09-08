@@ -34,7 +34,7 @@ namespace TestFullStack.WebApi.Controllers
             try
             {
                 var token = _authService.Signin(login);
-                if (token == null) return Unauthorized();
+                if (token == null) return Ok( new { Token = false});
                
                 var tokenString = token.GenerateToken();
 
@@ -54,7 +54,7 @@ namespace TestFullStack.WebApi.Controllers
             try
             {
                 var token = _authService.Signup(user);
-                if (token == null) return Unauthorized();
+                if (token == null) return Ok(new { Token = false });
 
                 var tokenString = token.GenerateToken();
 
