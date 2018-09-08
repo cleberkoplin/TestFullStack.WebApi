@@ -34,16 +34,16 @@ namespace TestFullStack.Domain.Services
             foreach(Product product in products)
             {
                 var item = new ItemOrder();
-                item.Product = product;
+                item.ProductId = product.Id;
                 item.Price = product.Price;
                 item.Quantity = orderRequest.IdsProducts.Where(x => x == product.Id).Count();
-                totalPrice += item.Price;
+                totalPrice += (item.Price * item.Quantity);
                 items.Add(item);
             }
 
             order.Items = items;
             order.Price = totalPrice;
-            order.User = user;
+            order.UserId = user.Id;
 
             _orderRepository.Insert(order);
             _orderRepository.Save();

@@ -12,9 +12,10 @@ namespace TestFullStack.Domain.Entities
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
+        public virtual User User { get; set; }
         [Required]
-        public User User { get; set; }
-                
+        public long UserId { get; set; }
+
         public virtual IList<ItemOrder> Items { get; set; }
 
     }

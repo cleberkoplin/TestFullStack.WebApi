@@ -9,9 +9,10 @@ namespace TestFullStack.Domain.Entities
 
         [Required]
         public Order Order { get; set; }
-        
+
+        public virtual Product Product { get; set; }
         [Required]
-        public Product Product { get; set; }
+        public long ProductId { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
