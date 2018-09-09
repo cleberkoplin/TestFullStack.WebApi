@@ -67,7 +67,7 @@ namespace TestFullStack.Domain.Services
                 predicate = predicate.And(x => x.Price >= filterOrderRequest.StartPrice);
 
             if (filterOrderRequest.EndPrice > 0)
-                predicate = predicate.And(x => x.Price >= filterOrderRequest.EndPrice);
+                predicate = predicate.And(x => x.Price <= filterOrderRequest.EndPrice);
 
             return _orderRepository.Get(predicate).ToList();
         }
