@@ -9,8 +9,8 @@ namespace TestFullStack.Domain.Repositories.Interfaces
 {
     public interface IQueryRepository<T> where T : IEntity
     {
-        T Get(long id);
-        IQueryable<T> Get(Expression<Func<T, bool>> predicate);
+        T Get(long id, bool loadFirstChild = false);
+        IQueryable<T> Get(Expression<Func<T, bool>> predicate, bool loadFirstChild = false);
         IQueryable<T> GetAll();
         Task<List<T>> GetAllAwaiter();
     }

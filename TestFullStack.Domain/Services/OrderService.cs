@@ -74,7 +74,14 @@ namespace TestFullStack.Domain.Services
 
         public Order Get(long id)
         {
-            return _orderRepository.Get(id);
+            Order order = _orderRepository.Get(id, true);
+            
+            foreach(ItemOrder item in order.Items)
+            {
+                item.Product = _productService.Get(item.ProductId);
+            }
+
+            return order;
         }
 
 

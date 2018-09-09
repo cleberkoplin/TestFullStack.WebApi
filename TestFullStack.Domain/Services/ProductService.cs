@@ -16,6 +16,11 @@ namespace TestFullStack.Domain.Services
             _productRepository = productRepository;
         }
 
+        public Product Get(long id)
+        {
+            return _productRepository.Get(id);
+        }
+
         public List<Product> Get(List<long> ids)
         {
             return _productRepository.Get(x => ids.Contains(x.Id)).ToList();

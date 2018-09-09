@@ -11,5 +11,6 @@ namespace TestFullStack.Domain.Services.Interfaces
         void Save(Product product);
         void Remove(long id);
         Task<List<Product>> GetAll();
+        Product Get(long id);
     }
 }

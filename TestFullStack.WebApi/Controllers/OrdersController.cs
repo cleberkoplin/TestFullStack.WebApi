@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TestFullStack.Domain.DTOs;
+using TestFullStack.Domain.Entities;
 using TestFullStack.Domain.Services.Interfaces;
 using TestFullStack.Domain.Utils;
 
@@ -53,13 +55,23 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpGet]
         [Route("{id}")]
         public IActionResult Get(long id)
         {
             try
             {
-                return Ok(_orderService.Get(id));
+                var details = new List<ItemOrderDetails>();
+                foreach(ItemOrder item in _orderService.Get(id).Items)
+                {
+                    var detail = new ItemOrderDetails();
+                    detail.Price = item.Price;
+                    detail.Quantity = item.Quantity;
+                    detail.ProductName = item.Product.Name;
+                    details.Add(detail);
+                }
+
+                return Ok(details);
             }
             catch (Exception ex)
             {
