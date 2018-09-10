@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TestFullStack.Domain.Base
 {
+    /// <summary>
+    /// EntityBase contains base methods and properties of any entity
+    /// </summary>
     public abstract class EntityBase : IEntity
     {
         [Key]

@@ -23,10 +23,10 @@ namespace TestFullStack.WebApi.Controllers
         }
         
         /// <summary>
-        /// Efetua a Autenticação do Usuário
+        /// Do User Authentication on WebApi
         /// </summary>
-        /// <param name="login">Login e Senha do Usuário para a Autenticação</param>
-        /// <returns>Token de Autenticação à ser utilizado nas requisições privadas</returns>
+        /// <param name="login">Login and user password for authentication</param>
+        /// <returns>Authentication token to be used in private requests</returns>
         [HttpPost]
         [Route("signin")]
         public IActionResult Signin([FromBody]LoginRequest login)
@@ -47,6 +47,11 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Do the user registration in the WebApi
+        /// </summary>
+        /// <param name="user">User object with name, username, password and email properties.</param>
+        /// <returns>Authentication token to be used in private requests.</returns>
         [HttpPost]
         [Route("signup")]
         public IActionResult Signup([FromBody]User user)

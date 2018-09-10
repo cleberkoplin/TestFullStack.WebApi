@@ -22,8 +22,12 @@ namespace TestFullStack.WebApi.Controllers
         {
             _productService = productService;
         }
-        
-        
+
+        /// <summary>
+        /// Save new product
+        /// </summary>
+        /// <param name="product">Product Object</param>
+        /// <returns>Ok</returns>
         [HttpPost]
         public IActionResult Post([FromBody]Product product)
         {
@@ -39,6 +43,11 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Remove product
+        /// </summary>
+        /// <param name="id">Product Id</param>
+        /// <returns>Ok</returns>
         [HttpPost]
         [Route("{id}")]
         public IActionResult Post(long id)
@@ -55,6 +64,11 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Update product
+        /// </summary>
+        /// <param name="product">Data product to update</param>
+        /// <returns>Ok</returns>
         [HttpPut]
         [Route("{id}")]
         public IActionResult Put([FromBody]Product product)
@@ -71,6 +85,10 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Get all Product
+        /// </summary>
+        /// <returns>List of products</returns>
         [HttpGet]
         [Route("all")]
         public async Task<List<Product>> GetAll()

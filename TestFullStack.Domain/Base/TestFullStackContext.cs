@@ -3,6 +3,9 @@ using TestFullStack.Domain.Entities;
 
 namespace TestFullStack.Domain.Base
 {
+    /// <summary>
+    /// Context of application, represents a session of database and contains DbSet's specifics of TestFullStack
+    /// </summary>
     public class TestFullStackContext : DbContext
     {
 

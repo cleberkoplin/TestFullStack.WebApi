@@ -11,7 +11,10 @@ namespace TestFullStack.WebApi.Controllers
     [ApiController]
     public class InitController : ControllerBase
     {
-        // GET api/values
+        /// <summary>
+        /// Use to verify run app - only developer mode
+        /// </summary>
+        /// <returns>System start informative text</returns>
         [HttpGet]
         public ActionResult<string> Index()
         {

@@ -23,8 +23,12 @@ namespace TestFullStack.WebApi.Controllers
         {
             _orderService = orderService;
         }
-        
-        
+
+        /// <summary>
+        /// Registers the order
+        /// </summary>
+        /// <param name="orderRequest">Order with ids of related product</param>
+        /// <returns>Ok</returns>
         [HttpPost]
         public IActionResult Post([FromBody]OrderRequest orderRequest)
         {
@@ -42,6 +46,11 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Search to orders
+        /// </summary>
+        /// <param name="filterOrderRequest">Filters by price range and date interval</param>
+        /// <returns>All orders from logged user</returns>
         [HttpGet]
         public IActionResult Get([FromQuery]FilterOrderRequest filterOrderRequest)
         {
@@ -56,6 +65,11 @@ namespace TestFullStack.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Get the details order
+        /// </summary>
+        /// <param name="id">Id of order</param>
+        /// <returns>Details with items order, price, quantity and product name</returns>
         [HttpGet]
         [Route("{id}")]
         public IActionResult Get(long id)
