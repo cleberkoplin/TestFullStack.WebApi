@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TestFullStack.Domain.Entities;
 using TestFullStack.Domain.Services.Interfaces;
+using TestFullStack.WebApi.Authorization;
 
 namespace TestFullStack.WebApi.Controllers
 {
 
-
+    [UserAuthorization]
     [Route("[controller]")]
     [Produces("application/json")]
     [ApiController]

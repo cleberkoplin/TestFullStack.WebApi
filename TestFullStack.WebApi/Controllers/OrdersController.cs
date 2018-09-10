@@ -5,11 +5,12 @@ using TestFullStack.Domain.DTOs;
 using TestFullStack.Domain.Entities;
 using TestFullStack.Domain.Services.Interfaces;
 using TestFullStack.Domain.Utils;
+using TestFullStack.WebApi.Authorization;
 
 namespace TestFullStack.WebApi.Controllers
 {
 
-
+    [UserAuthorization]
     [Route("[controller]")]
     [Produces("application/json")]
     [ApiController]
