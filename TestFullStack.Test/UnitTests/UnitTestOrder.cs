@@ -7,6 +7,7 @@ using TestFullStack.Domain.Services.Interfaces;
 using Xunit;
 using System.Linq;
 using TestFullStack.Domain.Services;
+using TestFullStack.Domain.Utils;
 
 namespace TestFullStack.Test
 {
@@ -33,9 +34,9 @@ namespace TestFullStack.Test
         {
 
             var user = new User();
-            user.Name = "Fake Name";
-            user.Password = "blablabla";
-            user.Username = "fake";
+            user.Name = "Fake Name Product";
+            user.Password = CryptoTools.ComputeHashMd5("blablablaProduct");
+            user.Username = "fakeProduct";
             userService.Save(user);
             
             var product1 = new Product();
@@ -56,7 +57,7 @@ namespace TestFullStack.Test
 
             orderService.Save(orderRequest);
 
-            Order order = repository.GetAll().FirstOrDefault();
+            Order order = repository.GetAll(true).FirstOrDefault();
             
             Assert.True(order != null && order.Items.Count() == 2 && order.User.Id == user.Id, "Save Order Ok!");
         }

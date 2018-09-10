@@ -11,7 +11,7 @@ namespace TestFullStack.Domain.Repositories.Interfaces
     {
         T Get(long id, bool loadFirstChild = false);
         IQueryable<T> Get(Expression<Func<T, bool>> predicate, bool loadFirstChild = false);
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(bool loadFirstChild = false);
         Task<List<T>> GetAllAwaiter();
     }
 }

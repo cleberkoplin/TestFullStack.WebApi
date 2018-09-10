@@ -76,7 +76,7 @@ namespace TestFullStack.WebApi.Controllers
         {
             try
             {
-                return await _productService.GetAll();
+                return await _productService.GetAllAsync();
             }
             catch (Exception ex)
             {

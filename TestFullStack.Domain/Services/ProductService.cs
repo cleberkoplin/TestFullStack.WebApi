@@ -47,8 +47,7 @@ namespace TestFullStack.Domain.Services
             _productRepository.Save();
         }
 
-
-        public async Task<List<Product>> GetAll()
+        public async Task<List<Product>> GetAllAsync()
         {
             return await _productRepository.GetAllAwaiter();
         }

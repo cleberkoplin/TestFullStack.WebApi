@@ -9,6 +9,7 @@ using Xunit;
 
 namespace TestFullStack.Test
 {
+    
     public class UnitTestAuth
     {
         IAuthService authService;
@@ -28,7 +29,7 @@ namespace TestFullStack.Test
 
             var user = new User();
             user.Name = "Fake Name";
-            user.Password = CryptoTools.ComputeHashMd5("blablabla"); ;
+            user.Password = CryptoTools.ComputeHashMd5("blablabla");
             user.Username = "fake";
 
             repository.Insert(user);
@@ -47,9 +48,9 @@ namespace TestFullStack.Test
         public void TestSignup()
         {
             var user = new User();
-            user.Name = "Fake Name";
-            user.Password = "blablabla";
-            user.Username = "fake";
+            user.Name = "Fake Name 2";
+            user.Password = "blablabla02";
+            user.Username = "fake02";
 
             Token token = authService.Signup(user);
 

@@ -34,6 +34,7 @@ namespace TestFullStack.Domain.Repositories
             }
 
             var entity = result.FirstOrDefault();
+            if (entity == null) return null;
             Context.Entry(entity).State = EntityState.Detached;
             return entity;
         }
@@ -53,9 +54,18 @@ namespace TestFullStack.Domain.Repositories
             return result;
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAll(bool loadFirstChild = false)
         {
             var result = Entities.AsQueryable();
+
+            // Incluindo automaticamente o primeiro nível de associações e coleções
+            if (loadFirstChild)
+            {
+                var include = GetInclude(typeof(T));
+                foreach (var item in include)
+                    result = result.Include(item).AsQueryable();
+            }
+
             return result;
         }
 

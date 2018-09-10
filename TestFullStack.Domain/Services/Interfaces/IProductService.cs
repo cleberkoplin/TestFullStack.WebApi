@@ -10,7 +10,7 @@ namespace TestFullStack.Domain.Services.Interfaces
         List<Product> Get(List<long> ids);
         void Save(Product product);
         void Remove(long id);
-        Task<List<Product>> GetAll();
+        Task<List<Product>> GetAllAsync();
         Product Get(long id);
     }
 }
